@@ -1,0 +1,13 @@
+V A 0
+V B 1
+V C 1
+V D 2
+E A B 3 1.0 1.0
+E B C 2 1.0 1.0
+E C D 2 1.0 1.0
+E A C 5 1.0 1.0
+E C A 5 1.0 1.0
+E D A 4 1.0 1.0
+E A D 9 1.0 1.0
+
+REQUEST multi A D B C

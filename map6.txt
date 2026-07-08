@@ -1,0 +1,9 @@
+V A 0
+V B -10
+V C 0
+E A B 3 1.0 1.0
+E B C 4 1.0 1.0
+E C B 2 1.0 1.0
+E C A 4 1.0 1.0
+
+REQUEST multi A B C
