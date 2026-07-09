@@ -12,15 +12,7 @@ import find_shortest_path as fsp
 TEST_FILE = "map6.txt"
 
 
-# --------------------------------------------------------------------------- #
-# Reading test.txt
-# --------------------------------------------------------------------------- #
 def read_test_file(path):
-    """Split test.txt into map lines (V/E) and the request line.
-
-    Returns:
-        (map_lines, request_tokens). request_tokens is None if no REQUEST found.
-    """
     map_lines = []
     request = None
     with open(path, "r") as f:
@@ -37,7 +29,6 @@ def read_test_file(path):
 
 
 def build_graph_from_lines(map_lines):
-    """Write the map lines to a temp file and build the graph via build_graph."""
     fd, tmp = tempfile.mkstemp(suffix=".txt")
     with os.fdopen(fd, "w") as f:
         f.write("\n".join(map_lines) + "\n")
@@ -46,11 +37,7 @@ def build_graph_from_lines(map_lines):
     return graph
 
 
-# --------------------------------------------------------------------------- #
-# Output formatting
-# --------------------------------------------------------------------------- #
 def fmt_cost(cost):
-    """Format a cost value nicely (drop trailing .0 for whole numbers)."""
     if cost == math.inf:
         return "inf"
     if float(cost).is_integer():
@@ -59,10 +46,9 @@ def fmt_cost(cost):
 
 
 def print_header(map_lines):
-    """Print the report header and echo the input map."""
     line = "=" * 66
     print(line)
-    print(" SMART URBAN ROUTING - result")
+    print(" SMART ROUTING - result")
     print(line)
     print("Input map:")
     for row in map_lines:
@@ -71,7 +57,6 @@ def print_header(map_lines):
 
 
 def run_single(graph, algorithm, source, target):
-    """Run and print a single source -> target request."""
     path, cost = fsp.find_optimal_shortest_path(graph, source, target)
     print(f"Algorithm : {algorithm}")
     print(f"Request   : single  ({source} -> {target})")
@@ -88,7 +73,6 @@ def run_single(graph, algorithm, source, target):
 
 
 def run_multi(graph, algorithm, source, destinations):
-    """Run and print a multi-destination request."""
     order, total, segments = fsp.multiple_destinations_shortest_path(
         graph, source, destinations
     )
